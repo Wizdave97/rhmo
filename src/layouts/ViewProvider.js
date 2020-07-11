@@ -17,7 +17,7 @@ const ViewProvider = () => {
       .then((data) => {
         console.log(data);
         setIsLoading(false);
-        if(data.statusCode == 200) setProvider(data)
+        if(data.id) setProvider(data)
       }).catch(err => {
         console.log(err);
         setIsLoading(false)
@@ -35,7 +35,7 @@ const ViewProvider = () => {
     <section className="view-provider">
       <div className="new-provider">
         <h1>View or Edit Provider <span><i className="fa fa-edit"></i></span></h1>
-        <NewProviderForm />
+        <NewProviderForm  provider={provider}/>
       </div>
     </section>
   )
