@@ -6,7 +6,7 @@ import queryString from 'querystring';
  */
 
  const BASE_URL = "https://pro-zone.herokuapp.com";
-
+ const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk0MTgzMzUwLCJleHAiOjE1OTY3NzUzNTB9.SS17FWeuomLQxAqyIEiPk0hTjLcKjh91XpM6U2X7dkM'
 class ApiService {
   static ENDPOINTS = {
     providers: `${BASE_URL}/providers`,
@@ -24,7 +24,11 @@ class ApiService {
 
   static async get(url, data) {
     const response = await fetch(
-      `${url}${data ? `?${queryString.stringify(data)}` : ''}`
+      `${url}${data ? `?${queryString.stringify(data)}` : ''}`, {
+        headers: {
+          'Authorization': token
+        }
+      }
     );
     return response.json();
   }
@@ -42,7 +46,22 @@ class ApiService {
     const response = await fetch(
       url, {
         method: 'POST',
-        body: data
+        body: JSON.stringify(data),
+        headers: {
+          'Authorization': token
+        }
+      }
+    );
+    return response.json();
+  }
+  static async put(url, data) {
+    const response = await fetch(
+      url, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          'Authorization': token
+        }
       }
     );
     return response.json();
