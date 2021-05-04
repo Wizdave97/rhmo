@@ -34,13 +34,18 @@ input.search {
     min-width: 300px;
     border-radius: 5px;
     padding: 4px 8px;
-    height: 39px;
+    min-height: 39px;
     margin-top: 8px;
     border: 1px solid rgba(0,0,0,0.3);
     font-size: 14px;
     line-height: 16px;
     color: #434A93;
+    display: flex;
+    flex-direction: column;
 
+}
+.result-box span {
+    margin: 4px 0;
 }
 
 .data-box {

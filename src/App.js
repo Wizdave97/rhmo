@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div className="app">
       <Search query={search} setQuery={setSearch}/>
-      <div className='result-box'>{result}</div>
+      <div className='result-box'>{result instanceof Array ? result.filter((res) => Boolean(res.trim())).map((res) => <span>{res}</span>) : <span>{result}</span>}</div>
       <div className='data-box'>{
         data.map(obj => {
           return (<span className='data-entry'>

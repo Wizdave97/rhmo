@@ -24,11 +24,11 @@ export const pathGet = (arr1, query) => {
   
     if(arr1 instanceof Array) {
       return arr1.map(obj => {
-        return getPath(obj, query)
+        return getPath(obj, query.toLowerCase())
       })
     }
     else {
-      return getPath(arr1, query)
+      return getPath(arr1, query.toLowerCase())
     }
   }
   
