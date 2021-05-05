@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { data } from './data'
 import './App.css';
 import { pathGet } from './utils' 
+import ErrorBoundary from './ErrorBoundary';
 
 
 
@@ -28,18 +29,20 @@ const App = () => {
     setResult(pathGet(data, search))
   }, [search])
   return (
+    <ErrorBoundary>
     <div className="app">
       <Search query={search} setQuery={setSearch}/>
-      <div className='result-box'>{result instanceof Array ? result.filter((res) => Boolean(res.trim())).map((res) => <span>{res}</span>) : <span>{result}</span>}</div>
+      <div className='result-box'>{result instanceof Array ? result.filter((res) => Boolean(res.trim())).map((res, i) => <span key={i}>{res}</span>) : <span>{result}</span>}</div>
       <div className='data-box'>{
-        data.map(obj => {
-          return (<span className='data-entry'>
+        data.map((obj, i) => {
+          return (<span className='data-entry' key={i}>
             {JSON.stringify(obj)}
           </span>)
         })
       }</div>
       
     </div>
+    </ErrorBoundary>
   );
 }
 
